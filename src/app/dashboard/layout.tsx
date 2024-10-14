@@ -6,9 +6,9 @@ import { User } from "lucide-react";
 
 export default function DashboardLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <TooltipProvider>
       <main className="flex min-h-screen w-full flex-col bg-muted/40">
