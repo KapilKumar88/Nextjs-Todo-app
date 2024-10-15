@@ -1,4 +1,4 @@
-import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
 import Link from "next/link";
 
 export default function Page() {
@@ -7,7 +7,15 @@ export default function Page() {
       <h1 className="text-4xl font-bold mb-8 text-primary">Todo Application</h1>
       <div className="bg-card text-card-foreground p-6 rounded-lg shadow-lg">
         <SignedOut>
-          <SignInButton />
+          <SignInButton
+            fallbackRedirectUrl="/dashboard"
+            signUpFallbackRedirectUrl="/dashboard"
+          />
+          &nbsp;
+          <SignUpButton
+            fallbackRedirectUrl="/dashboard"
+            signInFallbackRedirectUrl="/dashboard"
+          />
         </SignedOut>
         <SignedIn>
           <Link href={"/dashboard"}>Dashboard</Link>
