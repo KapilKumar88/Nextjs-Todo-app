@@ -17,6 +17,6 @@ export const UserProfileSlice = createSlice({
   reducers: {},
 });
 
-export const {  } = UserProfileSlice.actions;
+// export const {  } = UserProfileSlice.actions;
 
 export default UserProfileSlice.reducer;

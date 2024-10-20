@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
-import { Provider } from 'react-redux'
 import localFont from "next/font/local";
 import "./globals.css";
-import { store } from "@/redux/store";
+import ReduxStoreProvider from "@/lib/redux/ReduxStorePRovider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,11 +26,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider
-      signInFallbackRedirectUrl="/dashboard"
-      signUpFallbackRedirectUrl="/dashboard"
-    >
-      <Provider store={store}>
+    <ReduxStoreProvider>
+      <ClerkProvider
+        signInFallbackRedirectUrl="/dashboard"
+        signUpFallbackRedirectUrl="/dashboard"
+      >
         <html lang="en">
           <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -39,7 +38,7 @@ export default function RootLayout({
             {children}
           </body>
         </html>
-      </Provider>
-    </ClerkProvider>
+      </ClerkProvider>
+    </ReduxStoreProvider>
   );
 }

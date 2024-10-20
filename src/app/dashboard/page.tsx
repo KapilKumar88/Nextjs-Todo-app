@@ -8,12 +8,8 @@ export default async function Page({
   }: {
     searchParams: { q: string; offset: string };
   }) {
-    const search = searchParams.q ?? '';
-    const offset = searchParams.offset ?? 0;
-    // const { products, newOffset, totalProducts } = await getProducts(
-    //   search,
-    //   Number(offset)
-    // );
+
+
   
     return (
       <Tabs defaultValue="all">
@@ -43,7 +39,7 @@ export default async function Page({
         </div>
         <TabsContent value="all">
           <ProductsTable
-            products={[]}
+            // products={[]}
             offset={0}
             totalProducts={989090}
           />
