@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { currentUser } from "@clerk/nextjs/server";
+import { SignOutButton, UserButton } from "@clerk/nextjs";
 
 export async function User() {
   let user = await currentUser();
@@ -34,19 +35,12 @@ export async function User() {
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Settings</DropdownMenuItem>
+        <DropdownMenuItem><UserButton /></DropdownMenuItem>
         <DropdownMenuItem>Support</DropdownMenuItem>
         <DropdownMenuSeparator />
         {user ? (
           <DropdownMenuItem>
-            <form
-              action={async () => {
-                "use server";
-                // await signOut();
-              }}
-            >
-              <button type="submit">Sign Out</button>
-            </form>
+            <SignOutButton />
           </DropdownMenuItem>
         ) : (
           <DropdownMenuItem>

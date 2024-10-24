@@ -1,3 +1,5 @@
+import 'server-only';
+
 import { prisma } from "@/lib/dbConnection";
 import { User } from "@prisma/client";
 
@@ -17,6 +19,24 @@ export const createUser = async (payload: {
   });
 
   return user;
+};
+
+
+export const getUserDetailByClerkID = async (
+  clerkUserId: string
+): Promise<User | null> => {
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        clerkUserId,
+      },
+    });
+
+    return user;
+  } catch (error) {
+    console.error("Error fetching user by clerkUserId", error);
+    return null;
+  }
 };
 
 export const deleteUser = () => {

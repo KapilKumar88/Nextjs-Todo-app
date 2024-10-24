@@ -8,13 +8,14 @@ datasource db {
 }
 
 model User {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  clerkUserId String   @unique
-  email       String   @unique
-  name        String?
-  todos       Todo[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  clerkUserId  String   @unique
+  email        String   @unique
+  name         String?
+  profileImage String?
+  todos        Todo[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
 model Todo {
@@ -23,9 +24,11 @@ model Todo {
   description String?
   status      TodoStatus
   userId      String     @db.ObjectId
-  user        User       @relation(fields: [userId], references: [id])
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
+
+  
+  user        User       @relation(fields: [userId], references: [id])
 }
 
 enum TodoStatus {
